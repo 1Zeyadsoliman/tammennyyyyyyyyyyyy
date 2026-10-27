@@ -10,7 +10,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-const baseUrl = 'https://paver-rumbling-runt.ngrok-free.dev ';
+const baseUrl = 'https://paver-rumbling-runt.ngrok-free.dev';
 
 Future<Map<String, dynamic>> api(String path,
     {Map<String, dynamic>? body, bool post = false}) async {
