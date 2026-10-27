@@ -1,4 +1,3 @@
-// وصلت؟ طمّني — Backend (Node 18+, بدون مكتبات)
 const http = require('http'), fs = require('fs'), path = require('path'), crypto = require('crypto');
 try { fs.readFileSync(path.join(__dirname, '.env'), 'utf8').split('\n').forEach(l => { const m = l.match(/^\s*([A-Z_]+)\s*=\s*(.*)\s*$/); if (m && !process.env[m[1]]) process.env[m[1]] = m[2]; }); } catch {}
 
@@ -24,7 +23,6 @@ function view(t) {
     status, lateMinutes: status === 'late' ? Math.round((now - t.eta) / 60000) : 0, last, points: t.points.slice(-150), now };
 }
 
-// ---------- كشف الأخبار ----------
 function heuristic(text) {
   const flags = [];
   const rules = [
@@ -62,7 +60,6 @@ async function factcheck(text) {
   } catch (e) { console.error('factcheck:', e.message); return { ...heuristic(text), note: 'تعذّر الاتصال بالذكاء الاصطناعي، ده فحص مبدئي.' }; }
 }
 
-// ---------- الراوتر ----------
 const pub = path.join(__dirname, 'public');
 const mime = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.png': 'image/png', '.svg': 'image/svg+xml', '.json': 'application/manifest+json' };
 const hits = {};
@@ -104,7 +101,6 @@ http.createServer(async (req, res) => {
       return json(res, 404, { error: 'مش موجود' });
     } catch (e) { console.error(e); return json(res, 500, { error: 'خطأ في السيرفر' }); }
   }
-  // ملفات ثابتة + صفحة المتابعة /t/:id
   let f = p === '/' || p.startsWith('/t/') ? 'index.html' : p.slice(1);
   const fp = path.join(pub, path.normalize(f));
   if (!fp.startsWith(pub)) { res.writeHead(403); return res.end(); }

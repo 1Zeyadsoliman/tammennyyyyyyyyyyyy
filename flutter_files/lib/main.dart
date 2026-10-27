@@ -1,4 +1,3 @@
-// وصلت؟ طمّني — Flutter client
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
@@ -10,7 +9,6 @@ import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-// غيّر اللينك ده للسيرفر المنشور بتاعك (من غير / في الآخر)
 const baseUrl = 'https://YOUR-APP.onrender.com';
 
 Future<Map<String, dynamic>> api(String path,
@@ -101,7 +99,6 @@ class _HomeState extends State<Home> {
       );
 }
 
-// ---------- كارت الحالة (بيتستخدم في رحلتي والمتابعة) ----------
 class StatusCard extends StatelessWidget {
   final Map<String, dynamic> v;
   const StatusCard(this.v, {super.key});
@@ -131,7 +128,6 @@ class StatusCard extends StatelessWidget {
   }
 }
 
-// ---------- رحلتي ----------
 class TripTab extends StatefulWidget {
   const TripTab({super.key});
   @override
@@ -361,7 +357,6 @@ class _TripTabState extends State<TripTab> {
   }
 }
 
-// ---------- متابعة ----------
 class WatchTab extends StatefulWidget {
   const WatchTab({super.key});
   @override
@@ -471,7 +466,6 @@ class _WatchScreenState extends State<WatchScreen> {
   }
 }
 
-// ---------- كشف الأخبار ----------
 class NewsTab extends StatefulWidget {
   const NewsTab({super.key});
   @override
