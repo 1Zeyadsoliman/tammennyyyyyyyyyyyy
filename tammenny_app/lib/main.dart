@@ -14,7 +14,7 @@ const baseUrl = 'https://paver-rumbling-runt.ngrok-free.dev';
 
 Future<Map<String, dynamic>> api(String path,
     {Map<String, dynamic>? body, bool post = false}) async {
-  final uri = Uri.parse('$baseUrl/api$path');
+  final uri = Uri.parse('${baseUrl.trim()}/api$path');
   final r = post
       ? await http
           .post(uri,
