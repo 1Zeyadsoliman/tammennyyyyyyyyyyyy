@@ -3,364 +3,181 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#F4F2FB" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0F0B22" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#0f766e">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 <title>وصلت؟ طمّني</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&family=Reem+Kufi:wght@600&display=swap" rel="stylesheet">
 <style>
-:root{
-  --f:"Readex Pro","Segoe UI",Tahoma,system-ui,sans-serif;
-  --fb:"Reem Kufi","Readex Pro","Segoe UI",Tahoma,sans-serif;
-  --bg:#F4F2FB;--surface:#fff;--field:#EFEBFA;--ink:#19143A;--mut:#6B6690;--line:#E3DFF3;
-  --pri:#4A2FD4;--pri-ink:#fff;--tint:#E6E1FB;
-  --night:#1A1244;--night2:#2D2073;--gold:#FFC247;
-  --ok:#0E8F63;--ok-bg:#DDF5EA;--warn:#A5670A;--warn-bg:#FFF1D2;--bad:#D6303A;--bad-bg:#FDE3E4;
-}
-@media(prefers-color-scheme:dark){:root{
-  --bg:#0F0B22;--surface:#191436;--field:#231D47;--ink:#EEEBFF;--mut:#9E99C8;--line:#2B2552;
-  --pri:#9486FF;--pri-ink:#120C33;--tint:#2A2360;
-  --night:#241A5E;--night2:#3A2A8F;
-  --ok:#3DD6A0;--ok-bg:#12382C;--warn:#F5B94A;--warn-bg:#3A2D10;--bad:#FF7B83;--bad-bg:#40191D;
-}}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f);line-height:1.6;-webkit-font-smoothing:antialiased}
-svg.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none}
-button,input,textarea{font-family:inherit}
-:focus-visible{outline:3px solid var(--pri);outline-offset:2px}
-
-header{padding:calc(16px + env(safe-area-inset-top,0px)) 18px 6px}
-.brand{max-width:560px;margin:0 auto;display:flex;align-items:center;gap:12px}
-.brand svg.logo{width:44px;height:44px;flex:none}
-.brand b{display:block;font:600 24px/1.1 var(--fb);letter-spacing:0}
-.brand span{display:block;font-size:13px;color:var(--mut);margin-top:3px}
-
-main{max-width:560px;margin:0 auto;padding:14px 16px calc(110px + env(safe-area-inset-bottom,0px))}
-section{display:grid;gap:14px}
-h2{margin:6px 2px 0;font:600 26px/1.3 var(--f)}
-.lead{margin:-6px 2px 4px;color:var(--mut);font-size:15px}
-
-.sheet{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:18px}
-.sheet h3{margin:0 0 10px;font:600 16px var(--f)}
-label{display:block;font-size:13px;font-weight:500;color:var(--mut);margin:0 0 6px}
-input,textarea{width:100%;padding:13px 14px;border:1.5px solid transparent;border-radius:14px;background:var(--field);color:var(--ink);font:400 16px var(--f);transition:border-color .15s}
-input:focus,textarea:focus{outline:0;border-color:var(--pri)}
-input::placeholder,textarea::placeholder{color:var(--mut);opacity:.7}
-textarea{min-height:140px;resize:vertical;line-height:1.7}
-.field+.field{margin-top:14px}
-
-.stops{position:relative;display:grid;gap:10px;padding-inline-start:30px;margin-top:14px}
-.stops::before{content:"";position:absolute;inset-inline-start:9px;top:24px;bottom:24px;border-inline-start:2px dashed var(--line)}
-.stops .field{position:relative;margin:0}
-.stops .field::before{content:"";position:absolute;inset-inline-start:-27px;top:50%;width:14px;height:14px;margin-top:-7px;border-radius:50%;border:3px solid var(--pri);background:var(--surface)}
-.stops .field:last-child::before{background:var(--pri);border-radius:5px;transform:rotate(45deg) scale(.85)}
-
-.mins{display:flex;align-items:center;background:var(--field);border-radius:14px;padding-inline-end:14px;border:1.5px solid transparent}
-.mins:focus-within{border-color:var(--pri)}
-.mins input{border:0;background:none;font-weight:600;font-size:20px;font-variant-numeric:tabular-nums;direction:ltr;text-align:right}
-.mins span{color:var(--mut);font-size:14px}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-.chips button{padding:7px 16px;border-radius:99px;border:1.5px solid var(--line);background:none;color:var(--ink);font:500 14px var(--f);cursor:pointer;font-variant-numeric:tabular-nums}
-.chips button.on{background:var(--pri);border-color:var(--pri);color:var(--pri-ink)}
-.note{display:flex;gap:8px;align-items:flex-start;margin:14px 0 0;color:var(--mut);font-size:13px}
-.note svg.i{width:18px;height:18px;margin-top:2px}
-
-.btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;min-height:54px;padding:0 18px;border:0;border-radius:16px;background:var(--pri);color:var(--pri-ink);font:600 16px var(--f);cursor:pointer;text-decoration:none;transition:transform .12s,opacity .15s}
-.btn:active{transform:scale(.98)}
-.btn:disabled{opacity:.6;cursor:default}
-.btn.sec{background:transparent;color:var(--pri);box-shadow:inset 0 0 0 1.5px var(--line)}
-.btn.gold{background:var(--gold);color:#2B1D00;min-height:58px;font-size:17px}
-.btn.ghost{background:rgba(255,255,255,.12);color:#fff;min-height:46px;font-size:14px;font-weight:500}
-.btn+.btn,.row{margin-top:10px}
-.row{display:flex;gap:10px}.row .btn{margin-top:0}
-.sheet .btn{margin-top:16px}.sheet .row .btn{margin-top:0}
-
-.hero{position:relative;overflow:hidden;border-radius:30px;padding:22px 20px 20px;color:#fff;text-align:center;
-  background:radial-gradient(circle at 85% -10%,rgba(255,194,71,.22),transparent 45%),linear-gradient(165deg,var(--night),var(--night2));
-  box-shadow:0 22px 44px -22px rgba(56,34,170,.7)}
-.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1.5px) 0 0/18px 18px;pointer-events:none;mask-image:linear-gradient(180deg,transparent,#000 60%,transparent)}
-.hero>*{position:relative;z-index:1}
-.hero .who{font:600 22px/1.3 var(--f);margin:0 0 10px}
-.pill{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:99px;font:600 14px var(--f);background:rgba(255,255,255,.14);color:#fff}
-.pill::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
-.pill.onway::before{animation:blink 1.6s ease-in-out infinite}
-.pill.arrived{background:#2BD39A;color:#04281C}
-.pill.late{background:#FF7B83;color:#3B060B}
-.pill.silent{background:var(--gold);color:#2B1D00}
-.pill:empty{display:none}
-.count{margin:14px 0 0;font:600 64px/1.05 var(--f);font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate;letter-spacing:-1px}
-.count svg{width:64px;height:64px;stroke:#2BD39A;stroke-width:1.6}
-.cap{margin:2px 0 0;font-size:14px;color:rgba(255,255,255,.7)}
-
-.track{--p:0;position:relative;height:30px;margin:22px 6px 4px}
-.rail{position:absolute;inset-inline:0;top:50%;height:6px;margin-top:-3px;border-radius:6px;background:rgba(255,255,255,.16);overflow:hidden}
-.fill{position:absolute;inset-block:0;inset-inline-start:0;width:calc(var(--p)*100%);border-radius:6px;background:var(--gold);transition:width 1s linear}
-.hero[data-s=late] .fill{background:#FF7B83}
-.hero[data-s=arrived] .fill{background:#2BD39A}
-.me{position:absolute;top:50%;inset-inline-start:calc(var(--p)*100%);width:18px;height:18px;margin-top:-9px;border-radius:50%;background:#fff;border:4px solid var(--gold);transform:translateX(50%);transition:inset-inline-start 1s linear}
-.hero[data-s=late] .me{border-color:#FF7B83}
-.hero[data-s=arrived] .me{border-color:#2BD39A}
-.me::after{content:"";position:absolute;inset:-9px;border-radius:50%;border:2px solid var(--gold);animation:halo 2.2s ease-out infinite}
-.hero[data-s=late] .me::after{border-color:#FF7B83}
-.hero[data-s=arrived] .me::after,.hero.done .me::after{display:none}
-.ends{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:rgba(255,255,255,.75);margin:0 2px}
-.ends span{max-width:45%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.info{margin:16px 0 0;min-height:22px;font-size:13px;color:rgba(255,255,255,.7)}
-.hero .btn.gold{margin-top:14px}
-.hero .row{margin-top:10px}
-@keyframes halo{0%{transform:scale(.55);opacity:.8}100%{transform:scale(1.5);opacity:0}}
-@keyframes blink{50%{opacity:.25}}
-
-.mapcard{padding:12px;border-radius:24px}
-svg.map{display:block;width:100%;height:190px;border-radius:16px;background:var(--field);
-  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:26px 26px;background-position:center}
-.m-trail{fill:none;stroke:var(--pri);stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
-.m-start{fill:var(--surface);stroke:var(--pri);stroke-width:2.5}
-.m-dot{fill:var(--pri);stroke:var(--surface);stroke-width:2.5}
-.m-halo{fill:var(--pri);opacity:.3;transform-box:fill-box;transform-origin:center;animation:ping 2.2s ease-out infinite}
-.m-empty{fill:var(--mut);font:13px var(--f)}
-@keyframes ping{0%{transform:scale(.6);opacity:.5}100%{transform:scale(2.4);opacity:0}}
-.mapcard .btn{margin-top:10px;min-height:48px;font-size:15px}
-
-.alert{display:flex;gap:12px;align-items:center;padding:14px 16px;border-radius:18px;font-weight:500;font-size:15px}
-.alert.late{background:var(--bad-bg);color:var(--bad)}
-.alert.silent{background:var(--warn-bg);color:var(--warn)}
-.alert svg.i{width:26px;height:26px}
-
-.verdict{margin:0;font:700 24px/1.3 var(--f)}
-.meter{height:8px;border-radius:8px;background:var(--field);margin:12px 0 6px;overflow:hidden}
-.meter i{display:block;height:100%;border-radius:8px}
-.sub{display:flex;align-items:center;gap:8px;margin:18px 0 6px;font:600 15px var(--f)}
-.sheet ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
-.sheet li{position:relative;padding-inline-start:20px;font-size:15px}
-.sheet li::before{content:"";position:absolute;inset-inline-start:2px;top:.7em;width:7px;height:7px;border-radius:50%;background:var(--pri)}
-.mut{color:var(--mut);font-size:13px}
-
-nav{position:fixed;inset-inline:0;bottom:0;z-index:20;display:flex;justify-content:center;gap:4px;padding:8px 14px calc(8px + env(safe-area-inset-bottom,0px));
-  background:color-mix(in srgb,var(--surface) 90%,transparent);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-top:1px solid var(--line)}
-nav button{flex:1;max-width:180px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 0;border:0;background:none;color:var(--mut);font:500 12px/1.3 var(--f);cursor:pointer}
-nav .ic{display:grid;place-items:center;width:58px;height:32px;border-radius:16px;transition:background .2s,color .2s}
-nav button.on{color:var(--pri);font-weight:600}
-nav button.on .ic{background:var(--tint)}
-
-.toast{position:fixed;inset-inline:16px;bottom:calc(92px + env(safe-area-inset-bottom,0px));margin:0 auto;max-width:360px;z-index:30;padding:12px 16px;border-radius:14px;background:var(--ink);color:var(--bg);text-align:center;font-size:14px;font-weight:500;opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .2s,transform .2s}
-.toast.on{opacity:1;transform:none}
-
-.hide{display:none!important}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+:root{--bg:#f4f7f6;--card:#fff;--ink:#12302c;--mut:#5d7570;--pri:#0f766e;--ok:#15803d;--warn:#b45309;--bad:#b91c1c;--line:#dbe5e2}
+@media(prefers-color-scheme:dark){:root{--bg:#0d1a18;--card:#152623;--ink:#e6f2ef;--mut:#8fb0aa;--pri:#2dd4bf;--line:#244039}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,"Segoe UI",Tahoma,sans-serif;padding-bottom:env(safe-area-inset-bottom)}
+header{background:var(--pri);color:#fff;padding:calc(14px + env(safe-area-inset-top)) 16px 14px;text-align:center}
+@media(prefers-color-scheme:dark){header{color:#06231f}}
+header h1{margin:0;font-size:22px}header p{margin:2px 0 0;font-size:13px;opacity:.9}
+nav{display:flex;background:var(--card);border-bottom:1px solid var(--line)}
+nav button{flex:1;padding:12px 4px;border:0;background:none;color:var(--mut);font:600 14px inherit;font-family:inherit;border-bottom:3px solid transparent;cursor:pointer}
+nav button.on{color:var(--pri);border-color:var(--pri)}
+main{max-width:560px;margin:0 auto;padding:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+label{display:block;font-size:13px;color:var(--mut);margin:10px 0 4px}
+input,textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:16px inherit;font-family:inherit}
+textarea{min-height:120px;resize:vertical}
+.btn{display:block;width:100%;margin-top:12px;padding:13px;border:0;border-radius:10px;background:var(--pri);color:#fff;font:700 16px inherit;font-family:inherit;cursor:pointer}
+@media(prefers-color-scheme:dark){.btn{color:#06231f}}
+.btn.sec{background:transparent;color:var(--pri);border:1.5px solid var(--pri)}.btn.bad{background:var(--bad);color:#fff}
+.row{display:flex;gap:8px}.row .btn{margin-top:8px}
+.pill{display:inline-block;padding:4px 12px;border-radius:99px;font-weight:700;font-size:14px}
+.onway{background:#dbeafe;color:#1e40af}.arrived{background:#dcfce7;color:var(--ok)}.late{background:#fee2e2;color:var(--bad)}.silent{background:#fef3c7;color:var(--warn)}
+.big{font-size:40px;font-weight:800;text-align:center;margin:6px 0;font-variant-numeric:tabular-nums}
+.mut{color:var(--mut);font-size:13px}.center{text-align:center}
+.alert{background:#fee2e2;color:var(--bad);border:1.5px solid var(--bad);border-radius:12px;padding:12px;font-weight:700;margin-bottom:12px;text-align:center}
+svg.map{width:100%;height:180px;background:var(--bg);border-radius:10px;border:1px solid var(--line)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.chips span{background:var(--bg);border:1px solid var(--line);padding:4px 10px;border-radius:99px;font-size:13px}
+ul{padding-inline-start:20px;margin:6px 0}.hide{display:none}
+footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 0 24px}
 </style>
 </head>
 <body>
-
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
-  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
-  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 4.5 3.2 8 8 9 4.8-1 8-4.5 8-9V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></symbol>
-  <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.8 2.8L16 9.5"/></symbol>
-  <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.2 10.8 7.6-4.6M8.2 13.2l7.6 4.6"/></symbol>
-  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V6.5A1.5 1.5 0 0 1 6.5 5H15"/></symbol>
-  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 9a6 6 0 1 1 12 0c0 6 2 7 2 7H4s2-1 2-7z"/><path d="M10 20a2 2 0 0 0 4 0"/></symbol>
-  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
-  <symbol id="i-out" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4 10 14"/><path d="M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></symbol>
-  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
-  <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 4 2.5 20h19z"/><path d="M12 10v4M12 17.5v.01"/></symbol>
-  <symbol id="i-back" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
-  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></symbol>
-</svg>
-
-<header>
-  <div class="brand">
-    <svg class="logo" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="14" fill="#4A2FD4"/><path d="M10 21.5 22 12l12 9.5V32a1.5 1.5 0 0 1-1.5 1.5h-21A1.5 1.5 0 0 1 10 32z" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/><polyline points="15,26 19,26 21,22 24,30 26,26 29,26" fill="none" stroke="#FFC247" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <div><b>وصلت؟ طمّني</b><span>اطمن وطمنهم</span></div>
-  </div>
-</header>
-
+<header><h1>وصلت؟ طمّني 🏠</h1><p>اطمن وطمنهم</p></header>
+<nav id="tabs"><button data-t="go" class="on">رحلتي</button><button data-t="watch">متابعة</button><button data-t="news">كشف الأخبار</button></nav>
 <main>
+<!-- رحلتي -->
 <section id="go">
-  <div id="goForm" class="hide-wrap" style="display:grid;gap:14px">
-    <div><h2>طمّن أهلك وانت في الطريق</h2><p class="lead">ابدأ الرحلة وابعت اللينك. هيشوفوا موقعك لحد ما تدوس «وصلت».</p></div>
-    <div class="sheet">
-      <div class="field"><label for="name">اسمك</label><input id="name" placeholder="مثلاً: سارة" maxlength="40" autocomplete="given-name"></div>
-      <div class="stops">
-        <div class="field"><label for="from">من</label><input id="from" placeholder="الجامعة"></div>
-        <div class="field"><label for="to">إلى</label><input id="to" placeholder="البيت"></div>
-      </div>
-      <div class="field" style="margin-top:18px"><label for="mins">هوصل كمان كام دقيقة؟</label>
-        <div class="mins"><input id="mins" type="number" inputmode="numeric" value="45" min="1"><span>دقيقة</span></div>
-        <div class="chips" id="chips"><button type="button" data-m="15">15</button><button type="button" data-m="30">30</button><button type="button" data-m="45" class="on">45</button><button type="button" data-m="60">60</button><button type="button" data-m="90">90</button></div>
-      </div>
-      <button class="btn" onclick="startTrip()"><svg class="i"><use href="#i-pin"/></svg>ابدأ الرحلة وشارك الموقع</button>
-      <p class="note"><svg class="i"><use href="#i-lock"/></svg><span>الموقع بيتبعت بس طول الرحلة، وبيقف أول ما تدوس «وصلت».</span></p>
-    </div>
+  <div id="goForm" class="card">
+    <label>اسمك</label><input id="name" placeholder="مثلاً: سارة" maxlength="40">
+    <label>من</label><input id="from" placeholder="الجامعة">
+    <label>إلى</label><input id="to" placeholder="البيت">
+    <label>هوصل كمان كام دقيقة؟</label><input id="mins" type="number" inputmode="numeric" value="45" min="1">
+    <button class="btn" onclick="startTrip()">ابدأ الرحلة وشارك الموقع</button>
+    <p class="mut">الموقع بيتبعت بس طول الرحلة، وبيقف أول ما تدوس "وصلت".</p>
   </div>
-
-  <div id="goLive" class="hide" style="display:grid;gap:14px">
-    <div class="hero" id="gHero" data-s="onway">
-      <span id="gStatus" class="pill onway"></span>
-      <div class="count" id="gCount">--:--</div>
-      <div class="cap" id="gLabel">باقي على الوصول</div>
-      <div class="track" id="gTrack"><div class="rail"><div class="fill"></div></div><div class="me"></div></div>
-      <div class="ends"><span id="gFrom">البداية</span><span id="gTo">الوصول</span></div>
-      <div class="info" id="gInfo"></div>
-      <button class="btn gold" onclick="arrived()"><svg class="i"><use href="#i-check"/></svg>وصلت بالسلامة</button>
-      <div class="row"><button class="btn ghost" onclick="extend(10)">+10 دقايق</button><button class="btn ghost" onclick="extend(20)">+20 دقيقة</button></div>
+  <div id="goLive" class="hide">
+    <div class="card center"><span id="gStatus" class="pill onway"></span><div class="big" id="gCount">--:--</div>
+      <div class="mut" id="gInfo"></div>
+      <button class="btn" onclick="arrived()">✅ وصلت بالسلامة</button>
+      <div class="row"><button class="btn sec" onclick="extend(10)">+10 دقايق</button><button class="btn sec" onclick="extend(20)">+20 دقيقة</button></div>
     </div>
-    <div class="sheet"><h3>لينك المتابعة</h3>
-      <input id="link" readonly onclick="this.select()" dir="ltr" style="text-align:left" aria-label="لينك المتابعة">
-      <div class="row" style="margin-top:12px"><button class="btn sec" style="margin:0" onclick="shareLink()"><svg class="i"><use href="#i-share"/></svg>مشاركة</button><button class="btn sec" style="margin:0" onclick="copyLink()"><svg class="i"><use href="#i-copy"/></svg>نسخ</button></div>
+    <div class="card"><b>لينك المتابعة</b>
+      <input id="link" readonly onclick="this.select()" style="margin-top:8px">
+      <div class="row"><button class="btn sec" onclick="shareLink()">مشاركة</button><button class="btn sec" onclick="copyLink()">نسخ</button></div>
     </div>
     <button class="btn sec" onclick="resetTrip()">رحلة جديدة</button>
   </div>
 </section>
 
+<!-- متابعة -->
 <section id="watch" class="hide">
-  <div id="wForm" style="display:grid;gap:14px">
-    <div><h2>تابع رحلة حد بتحبه</h2><p class="lead">الصق اللينك اللي وصلك أو الكود، وهتشوف مكانه ووقت وصوله.</p></div>
-    <div class="sheet">
-      <label for="wcode">لينك الرحلة أو الكود</label><input id="wcode" placeholder="مثلاً: a1b2c3d4" dir="ltr" style="text-align:left">
-      <button class="btn" onclick="openWatch()"><svg class="i"><use href="#i-eye"/></svg>تابع</button>
-    </div>
+  <div id="wForm" class="card">
+    <label>الصق لينك الرحلة أو الكود</label><input id="wcode" placeholder="مثلاً: a1b2c3d4">
+    <button class="btn" onclick="openWatch()">تابع</button>
   </div>
-  <div id="wView" class="hide" style="display:grid;gap:14px">
+  <div id="wView" class="hide">
     <div id="wAlert" class="alert hide"></div>
-    <div class="hero" id="wHero" data-s="onway">
-      <div class="who" id="wName"></div>
-      <span id="wStatus" class="pill"></span>
-      <div class="count" id="wCount">--:--</div>
-      <div class="cap" id="wLabel">باقي على الوصول</div>
-      <div class="track" id="wTrack"><div class="rail"><div class="fill"></div></div><div class="me"></div></div>
-      <div class="ends"><span id="wFrom">البداية</span><span id="wTo">الوصول</span></div>
-      <div class="info" id="wInfo"></div>
-      <div class="cap" id="wRoute"></div>
+    <div class="card center"><div style="font-size:18px;font-weight:700" id="wName"></div><div class="mut" id="wRoute"></div>
+      <div style="margin:10px 0"><span id="wStatus" class="pill"></span></div>
+      <div class="big" id="wCount">--:--</div><div class="mut" id="wInfo"></div>
     </div>
-    <div class="sheet mapcard">
-      <svg id="wMap" class="map" viewBox="0 0 300 180" role="img" aria-label="مسار الرحلة"></svg>
-      <a id="wGmaps" class="btn sec" target="_blank" rel="noopener"><svg class="i"><use href="#i-out"/></svg>افتح آخر موقع في الخرائط</a>
-    </div>
-    <div class="row"><button class="btn sec" onclick="askNotif()"><svg class="i"><use href="#i-bell"/></svg>فعّل التنبيهات</button><button class="btn sec" onclick="stopWatch()"><svg class="i"><use href="#i-back"/></svg>رجوع</button></div>
+    <div class="card"><svg id="wMap" class="map" viewBox="0 0 300 180"></svg>
+      <a id="wGmaps" class="btn sec" style="text-decoration:none;text-align:center" target="_blank" rel="noopener">افتح آخر موقع في الخرائط</a></div>
+    <button class="btn sec" onclick="askNotif()">🔔 فعّل التنبيهات</button>
+    <button class="btn sec" onclick="stopWatch()">رجوع</button>
   </div>
 </section>
 
+<!-- أخبار -->
 <section id="news" class="hide">
-  <div><h2>الخبر ده حقيقي؟</h2><p class="lead">الصق أي خبر أو رسالة جاتلك قبل ما تشاركها.</p></div>
-  <div class="sheet">
-    <label for="ntext">نص الخبر أو الرسالة</label>
+  <div class="card"><label>الصق الخبر أو الرسالة اللي وصلتك</label>
     <textarea id="ntext" placeholder="مثلاً: عاجل!! مصدر مؤكد بيقول إن... شير قبل ما يتحذف"></textarea>
-    <button class="btn" id="nbtn" onclick="checkNews()"><svg class="i"><use href="#i-search"/></svg><span>افحص الخبر</span></button>
-  </div>
-  <div id="nres" class="sheet hide"></div>
+    <button class="btn" id="nbtn" onclick="checkNews()">افحص الخبر 🔍</button></div>
+  <div id="nres" class="card hide"></div>
 </section>
 </main>
-
-<nav id="tabs" aria-label="التنقل">
-  <button data-t="go" class="on"><span class="ic"><svg class="i"><use href="#i-pin"/></svg></span>رحلتي</button>
-  <button data-t="watch"><span class="ic"><svg class="i"><use href="#i-eye"/></svg></span>متابعة</button>
-  <button data-t="news"><span class="ic"><svg class="i"><use href="#i-shield"/></svg></span>كشف الأخبار</button>
-</nav>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<footer>وصلت؟ طمّني • اطمن وطمنهم</footer>
 
 <script>
 const $=id=>document.getElementById(id);
-const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const api=async(p,m='GET',b)=>{const r=await fetch('/api'+p,{method:m,headers:{'Content-Type':'application/json'},body:b?JSON.stringify(b):undefined});const d=await r.json();if(!r.ok)throw new Error(d.error||'حصل خطأ');return d};
-const ST={onway:'في الطريق',arrived:'وصل بالسلامة',late:'اتأخر',silent:'الإشارة مقطوعة'};
-const CHECK='<svg class="i"><use href="#i-check"/></svg>';
+const api=async(p,m='GET',b)=>{const r=await fetch('/api'+p,{method:m,headers:{'Content-Type':'application/json','ngrok-skip-browser-warning':'1'},body:b?JSON.stringify(b):undefined});let d;try{d=await r.json()}catch{throw new Error('السيرفر رد بشكل غير متوقع، تأكد إن node server.js شغال')}if(!r.ok)throw new Error(d.error||'حصل خطأ');return d};
+const ST={onway:'في الطريق 🚶',arrived:'وصل بالسلامة ✅',late:'اتأخر ⚠️',silent:'الإشارة مقطوعة 📡'};
 const mmss=ms=>{const s=Math.max(0,Math.round(ms/1000)),h=Math.floor(s/3600),m=Math.floor(s%3600/60);return(h?h+':':'')+String(m).padStart(2,'0')+':'+String(s%60).padStart(2,'0')};
 const ago=t=>{if(!t)return'لسه مفيش موقع';const m=Math.round((Date.now()-t)/60000);return m<1?'آخر تحديث: دلوقتي':'آخر تحديث: من '+m+' دقيقة'};
-const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
-function toast(m){const t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('on'),2800)}
 
+// تابات
 document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>show(b.dataset.t));
-function show(t){document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x.dataset.t===t));['go','watch','news'].forEach(s=>$(s).classList.toggle('hide',s!==t));window.scrollTo(0,0)}
+function show(t){document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x.dataset.t===t));['go','watch','news'].forEach(s=>$(s).classList.toggle('hide',s!==t))}
 
-const chips=document.querySelectorAll('#chips button');
-const syncChips=()=>chips.forEach(c=>c.classList.toggle('on',c.dataset.m===$('mins').value));
-chips.forEach(c=>c.onclick=()=>{$('mins').value=c.dataset.m;syncChips()});
-$('mins').addEventListener('input',syncChips);
-
-let trip=JSON.parse(localStorage.getItem('trip')||'null'),geoId=null,lastSent=0,wake=null,tick=null,poll=null,eta=0,total=0;
+// ---------- رحلتي ----------
+let trip=JSON.parse(localStorage.getItem('trip')||'null'),geoId=null,lastSent=0,wake=null,tick=null,poll=null,eta=0;
 async function startTrip(){
   const name=$('name').value.trim(),mins=+$('mins').value;
-  if(!name||!mins)return toast('اكتب اسمك ووقت الوصول');
+  if(!name||!mins)return alert('اكتب اسمك ووقت الوصول');
   try{const r=await api('/trips','POST',{name,from:$('from').value,to:$('to').value,etaMinutes:mins});
-    trip={from:$('from').value,to:$('to').value,total:mins*60000,...r};localStorage.setItem('trip',JSON.stringify(trip));runTrip()}catch(e){toast(e.message)}
+    trip={...r};localStorage.setItem('trip',JSON.stringify(trip));runTrip()}catch(e){alert(e.message)}
 }
 async function runTrip(){
   $('goForm').classList.add('hide');$('goLive').classList.remove('hide');
   $('link').value=location.origin+'/t/'+trip.id;
-  $('gFrom').textContent=trip.from||'البداية';$('gTo').textContent=trip.to||'الوصول';
-  total=trip.total||0;
-  const s0=$('gStatus');s0.className='pill onway';s0.textContent=ST.onway;
   if('geolocation'in navigator){
     geoId=navigator.geolocation.watchPosition(p=>{const n=Date.now();if(n-lastSent<15000)return;lastSent=n;
       api(`/trips/${trip.id}/location`,'POST',{token:trip.token,lat:p.coords.latitude,lng:p.coords.longitude}).catch(()=>{})},
-      e=>{$('gInfo').textContent='فعّل إذن الموقع عشان أهلك يشوفوك'},{enableHighAccuracy:true,maximumAge:5000});
+      e=>{$('gInfo').textContent='⚠️ فعّل إذن الموقع عشان أهلك يشوفوك'},{enableHighAccuracy:true,maximumAge:5000});
   }else $('gInfo').textContent='المتصفح مش بيدعم تحديد الموقع';
   try{wake=await navigator.wakeLock?.request('screen')}catch{}
-  const refresh=async()=>{try{const v=await api('/trips/'+trip.id);eta=v.eta;const s=$('gStatus');s.className='pill '+v.status;s.textContent=ST[v.status];$('gHero').dataset.s=v.status;
+  const refresh=async()=>{try{const v=await api('/trips/'+trip.id);eta=v.eta;const s=$('gStatus');s.className='pill '+v.status;s.textContent=ST[v.status];
     if(v.status==='arrived')finishLocal();$('gInfo').textContent=v.status==='late'?`متأخر ${v.lateMinutes} دقيقة - عدّل الوقت لو محتاج`:ago(v.last&&v.last.t)}catch{}};
   refresh();poll=setInterval(refresh,15000);
-  const draw=()=>{const d=eta-Date.now();if(d>total)total=d;
-    $('gCount').textContent=(d<0?'-':'')+mmss(Math.abs(d));$('gLabel').textContent=d<0?'متأخر عن الميعاد':'باقي على الوصول';
-    $('gTrack').style.setProperty('--p',total?clamp(1-d/total,0,1):0)};
-  draw();tick=setInterval(draw,1000);
+  tick=setInterval(()=>{const d=eta-Date.now();$('gCount').textContent=(d<0?'-':'')+mmss(Math.abs(d))},1000);
 }
-function finishLocal(){if(geoId!=null)navigator.geolocation.clearWatch(geoId);clearInterval(tick);clearInterval(poll);wake?.release?.()}
-async function arrived(){try{await api(`/trips/${trip.id}/arrived`,'POST',{token:trip.token})}catch(e){return toast(e.message)}
-  finishLocal();$('gCount').innerHTML=CHECK;$('gLabel').textContent='وصلت بالسلامة';$('gTrack').style.setProperty('--p',1);$('gHero').dataset.s='arrived';$('gHero').classList.add('done');
-  $('gStatus').className='pill arrived';$('gStatus').textContent=ST.arrived}
-async function extend(m){try{await api(`/trips/${trip.id}/extend`,'POST',{token:trip.token,minutes:m});total+=m*60000;trip.total=total;localStorage.setItem('trip',JSON.stringify(trip));toast('اتزود '+m+' دقيقة')}catch(e){toast(e.message)}}
+function finishLocal(){navigator.geolocation.clearWatch(geoId);clearInterval(tick);clearInterval(poll);wake?.release?.()}
+async function arrived(){await api(`/trips/${trip.id}/arrived`,'POST',{token:trip.token});finishLocal();$('gCount').textContent='🎉';$('gStatus').className='pill arrived';$('gStatus').textContent=ST.arrived}
+async function extend(m){await api(`/trips/${trip.id}/extend`,'POST',{token:trip.token,minutes:m})}
 function resetTrip(){if(geoId!=null)finishLocal();localStorage.removeItem('trip');trip=null;location.href='/'}
-function copyLink(){navigator.clipboard?.writeText($('link').value);toast('اتنسخ اللينك')}
-function shareLink(){const t=`تابع رحلتي لحد ما أوصل`;navigator.share?navigator.share({title:'وصلت؟ طمّني',text:t,url:$('link').value}):copyLink()}
+function copyLink(){navigator.clipboard?.writeText($('link').value);alert('اتنسخ')}
+function shareLink(){const t=`تابع رحلتي لحد ما أوصل 🏠`;navigator.share?navigator.share({title:'وصلت؟ طمّني',text:t,url:$('link').value}):copyLink()}
 
-\let wid=null,wpoll=null,wtick=null,weta=0,wtotal=0,lastStatus=null;
+// ---------- متابعة ----------
+let wid=null,wpoll=null,wtick=null,weta=0,lastStatus=null;
 function openWatch(){const v=$('wcode').value.trim().split('/').pop();if(v)location.href='/t/'+v}
 function stopWatch(){location.href='/'}
-function askNotif(){Notification?.requestPermission?.().then(p=>toast(p==='granted'?'تمام، هنبعتلك تنبيه لو حصل تأخير':'التنبيهات مقفولة من المتصفح'))}
+function askNotif(){Notification?.requestPermission?.().then(p=>alert(p==='granted'?'تمام، هنبعتلك تنبيه لو حصل تأخير':'التنبيهات مقفولة من المتصفح'))}
 function beep(){try{const c=new AudioContext(),o=c.createOscillator();o.connect(c.destination);o.frequency.value=880;o.start();setTimeout(()=>o.stop(),600);navigator.vibrate?.([300,150,300])}catch{}}
-function drawMap(pts){const s=$('wMap');if(!pts||!pts.length){s.innerHTML='<text x="150" y="94" text-anchor="middle" class="m-empty">مستني أول موقع...</text>';return}
+function drawMap(pts){const s=$('wMap');if(!pts.length){s.innerHTML='<text x="150" y="95" text-anchor="middle" fill="#888" font-size="13">مستني أول موقع...</text>';return}
   const la=pts.map(p=>p.lat),lo=pts.map(p=>p.lng),a=Math.min(...la),b=Math.max(...la),c=Math.min(...lo),d=Math.max(...lo),sp=Math.max(b-a,d-c,.002);
   const X=v=>20+(v-c)/sp*260+(260-(d-c)/sp*260)/2,Y=v=>160-((v-a)/sp*140)-(140-(b-a)/sp*140)/2;
-  const path=pts.map(p=>X(p.lng).toFixed(1)+','+Y(p.lat).toFixed(1)).join(' '),f=pts[0],l=pts[pts.length-1];
-  s.innerHTML=`<polyline class="m-trail" points="${path}"/><circle class="m-start" cx="${X(f.lng)}" cy="${Y(f.lat)}" r="4.5"/><circle class="m-halo" cx="${X(l.lng)}" cy="${Y(l.lat)}" r="9"/><circle class="m-dot" cx="${X(l.lng)}" cy="${Y(l.lat)}" r="6"/>`}
-function wDraw(){const d=weta-Date.now();if(d>wtotal)wtotal=d;
-  $('wCount').textContent=(d<0?'-':'')+mmss(Math.abs(d));$('wLabel').textContent=d<0?'متأخر عن الميعاد':'باقي على الوصول';
-  $('wTrack').style.setProperty('--p',wtotal?clamp(1-d/wtotal,0,1):0)}
+  const path=pts.map(p=>X(p.lng).toFixed(1)+','+Y(p.lat).toFixed(1)).join(' '),l=pts[pts.length-1];
+  s.innerHTML=`<polyline points="${path}" fill="none" stroke="#0f766e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="${X(l.lng)}" cy="${Y(l.lat)}" r="8" fill="#0f766e" opacity=".3"/><circle cx="${X(l.lng)}" cy="${Y(l.lat)}" r="5" fill="#0f766e"/>`}
 async function watchLoop(){
   try{const v=await api('/trips/'+wid);weta=v.eta;
-    $('wName').textContent=v.name;$('wRoute').textContent='';$('wFrom').textContent=v.from||'البداية';$('wTo').textContent=v.to||'الوصول';
-    const s=$('wStatus');s.className='pill '+v.status;s.textContent=ST[v.status];$('wHero').dataset.s=v.status;
+    $('wName').textContent=v.name;$('wRoute').textContent=[v.from,v.to].filter(Boolean).join(' ← ');
+    const s=$('wStatus');s.className='pill '+v.status;s.textContent=ST[v.status];
     $('wInfo').textContent=v.status==='arrived'?'وصل الساعة '+new Date(v.arrivedAt).toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'}):ago(v.last&&v.last.t);
-    const warn=v.status==='late'||v.status==='silent',al=$('wAlert');
-    al.className='alert '+v.status+(warn?'':' hide');
-    al.innerHTML='<svg class="i"><use href="#i-warn"/></svg><span></span>';
-    al.lastChild.textContent=v.status==='late'?`${v.name} اتأخر ${v.lateMinutes} دقيقة عن الميعاد. جرّب تكلمه.`:'مفيش تحديث للموقع بقاله فترة. اتصل بيه تتطمن.';
-    drawMap(v.points);if(v.last){$('wGmaps').href=`https://www.google.com/maps?q=${v.last.lat},${v.last.lng}`;$('wGmaps').classList.remove('hide')}else $('wGmaps').classList.add('hide');
-    if(lastStatus&&lastStatus!==v.status&&warn){beep();if(Notification?.permission==='granted')new Notification('وصلت؟ طمّني',{body:al.lastChild.textContent})}
-    if(lastStatus&&lastStatus!==v.status&&v.status==='arrived'){beep();if(Notification?.permission==='granted')new Notification('وصلت؟ طمّني',{body:v.name+' وصل بالسلامة'})}
-    lastStatus=v.status;
-    if(v.status==='arrived'){clearInterval(wtick);$('wCount').innerHTML=CHECK;$('wLabel').textContent='وصل بالسلامة';$('wTrack').style.setProperty('--p',1);$('wHero').classList.add('done')}
-    else if(!wtick){wDraw();wtick=setInterval(wDraw,1000)}
+    const al=$('wAlert');al.classList.toggle('hide',!(v.status==='late'||v.status==='silent'));
+    al.textContent=v.status==='late'?`⚠️ ${v.name} اتأخر ${v.lateMinutes} دقيقة عن الميعاد. جرّب تكلمه.`:'📡 مفيش تحديث للموقع بقاله فترة. اتصل بيه تتطمن.';
+    drawMap(v.points);if(v.last)$('wGmaps').href=`https://www.google.com/maps?q=${v.last.lat},${v.last.lng}`;else $('wGmaps').classList.add('hide');
+    if(lastStatus&&lastStatus!==v.status&&(v.status==='late'||v.status==='silent')){beep();if(Notification?.permission==='granted')new Notification('وصلت؟ طمّني',{body:al.textContent})}
+    if(lastStatus&&lastStatus!==v.status&&v.status==='arrived'){beep();if(Notification?.permission==='granted')new Notification('وصلت؟ طمّني',{body:v.name+' وصل بالسلامة ✅'})}
+    lastStatus=v.status;if(v.status==='arrived'){$('wCount').textContent='🎉';clearInterval(wtick)}
   }catch(e){$('wRoute').textContent=e.message}
 }
 function startWatch(id){wid=id;show('watch');$('wForm').classList.add('hide');$('wView').classList.remove('hide');
-  watchLoop();wpoll=setInterval(watchLoop,10000)}
+  watchLoop();wpoll=setInterval(watchLoop,10000);
+  wtick=setInterval(()=>{const d=weta-Date.now();$('wCount').textContent=(d<0?'-':'')+mmss(Math.abs(d))},1000)}
 
-
+// ---------- أخبار ----------
 async function checkNews(){
-  const t=$('ntext').value.trim();if(t.length<10)return toast('اكتب الخبر الأول');
-  const b=$('nbtn'),lbl=b.querySelector('span');b.disabled=true;lbl.textContent='بنفحص...';
+  const t=$('ntext').value.trim();if(t.length<10)return alert('اكتب الخبر الأول');
+  const b=$('nbtn');b.disabled=true;b.textContent='بنفحص...';
   try{const r=await api('/factcheck','POST',{text:t});const bad=/كاذب|مشكوك/.test(r.verdict),mid=/تحقق|لا يمكن/.test(r.verdict);
-    const col=bad?'var(--bad)':mid?'var(--warn)':'var(--ok)',conf=clamp(+r.confidence||0,0,100);
-    const li=a=>'<ul>'+(a||[]).map(x=>`<li>${esc(x)}</li>`).join('')+'</ul>';
+    const col=bad?'var(--bad)':mid?'var(--warn)':'var(--ok)';
+    const li=a=>'<ul>'+(a||[]).map(x=>`<li>${x.replace(/</g,'&lt;')}</li>`).join('')+'</ul>';
     const n=$('nres');n.classList.remove('hide');
-    n.innerHTML=`<p class="verdict" style="color:${col}">${esc(r.verdict)}</p><div class="meter" role="img" aria-label="نسبة الثقة ${conf}%"><i style="width:${conf}%;background:${col}"></i></div><div class="mut">نسبة الثقة: ${conf}%</div><div class="sub"><svg class="i" style="width:18px;height:18px"><use href="#i-warn"/></svg>ليه؟</div>${li(r.reasons)}<div class="sub"><svg class="i" style="width:18px;height:18px"><use href="#i-search"/></svg>اتأكد إزاي؟</div>${li(r.tips)}${r.note?`<p class="mut" style="margin:16px 0 0">${esc(r.note)}</p>`:''}`;
-    n.scrollIntoView({behavior:'smooth',block:'nearest'})}
-  catch(e){toast(e.message)}b.disabled=false;lbl.textContent='افحص الخبر'}
+    n.innerHTML=`<div style="font-size:20px;font-weight:800;color:${col}">${r.verdict}</div><div class="mut">نسبة الثقة: ${r.confidence}%</div><b>ليه؟</b>${li(r.reasons)}<b>اتأكد إزاي؟</b>${li(r.tips)}<p class="mut">${r.note||''}</p>`}
+  catch(e){alert(e.message)}b.disabled=false;b.textContent='افحص الخبر 🔍'}
 
+// ---------- تشغيل ----------
+if('serviceWorker'in navigator)navigator.serviceWorker.register('/sw.js').catch(()=>{});
 const m=location.pathname.match(/^\/t\/(\w+)/);
 if(m)startWatch(m[1]);else if(trip)runTrip();
 </script>
