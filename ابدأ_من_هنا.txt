@@ -1,0 +1,11 @@
+مشروع: وصلت؟ طمّني
+
+tammenny/       = الباك إند (ده اللي بيترفع على GitHub ثم Render)
+flutter_files/  = ملفات تطبيق Flutter (مش مشروع كامل!)
+
+ترتيب الشغل:
+1) انشر فولدر tammenny على Render.
+2) ثبّت Flutter ثم افتح Terminal جوه فولدر graduation_project واكتب:
+       flutter create tammenny_app
+3) انسخ flutter_files/lib/main.dart جوه tammenny_app/lib/ (Replace).
+4) كمّل باقي الخطوات من flutter_files/README.md
