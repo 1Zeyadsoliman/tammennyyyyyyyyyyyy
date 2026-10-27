@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0f766e">
+<meta name="theme-color" content="#101B3D">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/icon-192.png">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -11,43 +12,45 @@
 <meta name="mobile-web-app-capable" content="yes">
 <title>وصلت؟ طمّني</title>
 <style>
-:root{--bg:#f4f7f6;--card:#fff;--ink:#12302c;--mut:#5d7570;--pri:#0f766e;--ok:#15803d;--warn:#b45309;--bad:#b91c1c;--line:#dbe5e2}
-@media(prefers-color-scheme:dark){:root{--bg:#0d1a18;--card:#152623;--ink:#e6f2ef;--mut:#8fb0aa;--pri:#2dd4bf;--line:#244039}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,"Segoe UI",Tahoma,sans-serif;padding-bottom:env(safe-area-inset-bottom)}
-header{background:var(--pri);color:#fff;padding:calc(14px + env(safe-area-inset-top)) 16px 14px;text-align:center}
-@media(prefers-color-scheme:dark){header{color:#06231f}}
-header h1{margin:0;font-size:22px}header p{margin:2px 0 0;font-size:13px;opacity:.9}
-nav{display:flex;background:var(--card);border-bottom:1px solid var(--line)}
-nav button{flex:1;padding:12px 4px;border:0;background:none;color:var(--mut);font:600 14px inherit;font-family:inherit;border-bottom:3px solid transparent;cursor:pointer}
-nav button.on{color:var(--pri);border-color:var(--pri)}
-main{max-width:560px;margin:0 auto;padding:14px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
-label{display:block;font-size:13px;color:var(--mut);margin:10px 0 4px}
-input,textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:16px inherit;font-family:inherit}
+:root{--bg:#101B3D;--card:#fff;--ink:#101B3D;--mut:#4B5679;--acc:#FFC93C;--ok:#15803d;--warn:#b45309;--bad:#b91c1c;--line:#D7DCEF;--soft:#EDF0FA;--navy2:#1B2A63}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#fff;font-family:"Cairo",system-ui,"Segoe UI",Tahoma,sans-serif;padding-bottom:env(safe-area-inset-bottom)}
+header{padding:calc(18px + env(safe-area-inset-top)) 16px 16px;text-align:center}
+header svg{display:block;margin:0 auto 4px}
+header h1{margin:0;font-size:30px;font-weight:900;line-height:1.3}
+header p{display:inline-block;margin:6px 0 0;background:var(--acc);color:var(--ink);font-size:15px;font-weight:800;padding:2px 18px 4px;border-radius:99px}
+nav{display:flex;background:var(--navy2)}
+nav button{flex:1;padding:13px 4px;border:0;background:none;color:#C9D2F2;font:700 14px inherit;font-family:inherit;border-bottom:3px solid transparent;cursor:pointer}
+nav button.on{color:var(--acc);border-color:var(--acc)}
+main{max-width:560px;margin:0 auto;padding:16px 14px}
+.card{background:var(--card);color:var(--ink);border-radius:18px;padding:16px;margin-bottom:14px}
+label{display:block;font-size:13px;font-weight:600;color:var(--mut);margin:10px 0 4px}
+input,textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:12px;background:var(--soft);color:var(--ink);font:16px inherit;font-family:inherit}
+input:focus,textarea:focus{outline:2px solid var(--acc);outline-offset:1px}
 textarea{min-height:120px;resize:vertical}
-.btn{display:block;width:100%;margin-top:12px;padding:13px;border:0;border-radius:10px;background:var(--pri);color:#fff;font:700 16px inherit;font-family:inherit;cursor:pointer}
-@media(prefers-color-scheme:dark){.btn{color:#06231f}}
-.btn.sec{background:transparent;color:var(--pri);border:1.5px solid var(--pri)}.btn.bad{background:var(--bad);color:#fff}
+.btn{display:block;width:100%;margin-top:12px;padding:13px;border:0;border-radius:12px;background:var(--acc);color:var(--ink);font:800 16px inherit;font-family:inherit;cursor:pointer}
+.btn:disabled{opacity:.6}
+.btn.sec{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+#wView>.btn.sec,#goLive>.btn.sec{color:#fff;border-color:#C9D2F2}
+.btn.bad{background:var(--bad);color:#fff}
 .row{display:flex;gap:8px}.row .btn{margin-top:8px}
-.pill{display:inline-block;padding:4px 12px;border-radius:99px;font-weight:700;font-size:14px}
-.onway{background:#dbeafe;color:#1e40af}.arrived{background:#dcfce7;color:var(--ok)}.late{background:#fee2e2;color:var(--bad)}.silent{background:#fef3c7;color:var(--warn)}
-.big{font-size:40px;font-weight:800;text-align:center;margin:6px 0;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;padding:4px 14px;border-radius:99px;font-weight:800;font-size:14px}
+.onway{background:#DDE5FF;color:#1B2A63}.arrived{background:#dcfce7;color:var(--ok)}.late{background:#fee2e2;color:var(--bad)}.silent{background:#fef3c7;color:var(--warn)}
+.big{font-size:46px;font-weight:900;text-align:center;margin:6px 0;font-variant-numeric:tabular-nums;color:var(--ink)}
 .mut{color:var(--mut);font-size:13px}.center{text-align:center}
-.alert{background:#fee2e2;color:var(--bad);border:1.5px solid var(--bad);border-radius:12px;padding:12px;font-weight:700;margin-bottom:12px;text-align:center}
-svg.map{width:100%;height:180px;background:var(--bg);border-radius:10px;border:1px solid var(--line)}
-.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.chips span{background:var(--bg);border:1px solid var(--line);padding:4px 10px;border-radius:99px;font-size:13px}
+.alert{background:#FFE4DF;color:#7F1D1D;border:1.5px solid var(--bad);border-radius:14px;padding:12px;font-weight:800;margin-bottom:14px;text-align:center}
+svg.map{width:100%;height:180px;background:var(--soft);border-radius:12px;margin-bottom:6px}
 ul{padding-inline-start:20px;margin:6px 0}.hide{display:none}
-footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 0 24px}
+footer{text-align:center;color:#C9D2F2;font-size:12px;padding:10px 0 24px}
 </style>
 </head>
 <body>
-<header><h1>وصلت؟ طمّني 🏠</h1><p>اطمن وطمنهم</p></header>
+<header><svg width="56" height="56" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z" fill="#FFC93C"/><path d="M8.7 10l2.3 2.3 4.3-4.6" stroke="#101B3D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><h1>وصلت؟ طمّني</h1><p>اطمن وطمنهم</p></header>
 <nav id="tabs"><button data-t="go" class="on">رحلتي</button><button data-t="watch">متابعة</button><button data-t="news">كشف الأخبار</button></nav>
 <main>
 <!-- رحلتي -->
 <section id="go">
   <div id="goForm" class="card">
-    <label>اسمك</label><input id="name" placeholder="مثلاً: سارة" maxlength="40">
+    <label>اسمك</label><input id="name" placeholder="اكتب اسمك" maxlength="40">
     <label>من</label><input id="from" placeholder="الجامعة">
     <label>إلى</label><input id="to" placeholder="البيت">
     <label>هوصل كمان كام دقيقة؟</label><input id="mins" type="number" inputmode="numeric" value="45" min="1">
@@ -147,7 +150,7 @@ function drawMap(pts){const s=$('wMap');if(!pts.length){s.innerHTML='<text x="15
   const la=pts.map(p=>p.lat),lo=pts.map(p=>p.lng),a=Math.min(...la),b=Math.max(...la),c=Math.min(...lo),d=Math.max(...lo),sp=Math.max(b-a,d-c,.002);
   const X=v=>20+(v-c)/sp*260+(260-(d-c)/sp*260)/2,Y=v=>160-((v-a)/sp*140)-(140-(b-a)/sp*140)/2;
   const path=pts.map(p=>X(p.lng).toFixed(1)+','+Y(p.lat).toFixed(1)).join(' '),l=pts[pts.length-1];
-  s.innerHTML=`<polyline points="${path}" fill="none" stroke="#0f766e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="${X(l.lng)}" cy="${Y(l.lat)}" r="8" fill="#0f766e" opacity=".3"/><circle cx="${X(l.lng)}" cy="${Y(l.lat)}" r="5" fill="#0f766e"/>`}
+  s.innerHTML=`<polyline points="${path}" fill="none" stroke="#2B3C85" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="${X(l.lng)}" cy="${Y(l.lat)}" r="9" fill="#FFC93C" opacity=".6"/><circle cx="${X(l.lng)}" cy="${Y(l.lat)}" r="5" fill="#101B3D"/>`}
 async function watchLoop(){
   try{const v=await api('/trips/'+wid);weta=v.eta;
     $('wName').textContent=v.name;$('wRoute').textContent=[v.from,v.to].filter(Boolean).join(' ← ');

@@ -10,8 +10,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-// غيّر اللينك ده للسيرفر المنشور بتاعك (من غير / في الآخر)
-const baseUrl = 'https://YOUR-APP.onrender.com';
+const baseUrl = 'https://paver-rumbling-runt.ngrok-free.dev ';
 
 Future<Map<String, dynamic>> api(String path,
     {Map<String, dynamic>? body, bool post = false}) async {
@@ -19,10 +18,10 @@ Future<Map<String, dynamic>> api(String path,
   final r = post
       ? await http
           .post(uri,
-              headers: {'Content-Type': 'application/json'},
+              headers: {'Content-Type': 'application/json', 'ngrok-skip-browser-warning': '1'},
               body: jsonEncode(body ?? {}))
           .timeout(const Duration(seconds: 25))
-      : await http.get(uri).timeout(const Duration(seconds: 25));
+      : await http.get(uri, headers: {'ngrok-skip-browser-warning': '1'}).timeout(const Duration(seconds: 25));
   final d = jsonDecode(utf8.decode(r.bodyBytes)) as Map<String, dynamic>;
   if (r.statusCode >= 400) throw Exception(d['error'] ?? 'حصل خطأ');
   return d;
@@ -65,7 +64,20 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) => MaterialApp(
         title: 'وصلت؟ طمّني',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(useMaterial3: true, colorSchemeSeed: const Color(0xFF0F766E)),
+        theme: ThemeData(
+          useMaterial3: true,
+          scaffoldBackgroundColor: const Color(0xFFFFF9EC),
+          colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1B2A63)).copyWith(
+            primary: const Color(0xFF101B3D),
+            onPrimary: Colors.white,
+            secondaryContainer: const Color(0xFFFFC93C),
+            onSecondaryContainer: const Color(0xFF101B3D),
+          ),
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Color(0xFF101B3D),
+            foregroundColor: Colors.white,
+          ),
+        ),
         builder: (c, child) => Directionality(textDirection: TextDirection.rtl, child: child!),
         home: const Home(),
       );
